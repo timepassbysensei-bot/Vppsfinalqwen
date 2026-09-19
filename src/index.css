@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+  body {
+    @apply bg-offwhite text-ink font-body antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-bold tracking-tight text-navy;
+  }
+  :focus-visible {
+    @apply outline-none ring-2 ring-saffron ring-offset-2 ring-offset-white;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .container-app {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-4 py-2.5 text-sm font-semibold transition-colors duration-150 min-h-[44px];
+  }
+  .btn-primary {
+    @apply btn bg-navy text-white hover:bg-problue;
+  }
+  .btn-accent {
+    @apply btn bg-saffron text-white hover:bg-saffron-600;
+  }
+  .btn-outline {
+    @apply btn border border-lightgray bg-white text-navy hover:border-navy-300 hover:bg-navy-50;
+  }
+  .btn-ghost {
+    @apply btn text-navy hover:bg-navy-50;
+  }
+  .btn-danger {
+    @apply btn bg-error text-white hover:bg-red-800;
+  }
+  .btn-sm {
+    @apply px-3 py-1.5 text-xs min-h-[36px];
+  }
+  .card {
+    @apply rounded-lg border border-lightgray bg-white shadow-card;
+  }
+  .input {
+    @apply w-full rounded-md border border-lightgray bg-white px-3 py-2.5 text-sm text-ink placeholder:text-muted focus:border-problue focus:outline-none focus:ring-1 focus:ring-problue min-h-[44px];
+  }
+  .label {
+    @apply mb-1.5 block text-sm font-medium text-navy;
+  }
+  .input-error {
+    @apply border-error focus:border-error focus:ring-error;
+  }
+  .error-text {
+    @apply mt-1 text-xs text-error;
+  }
+  .badge {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold;
+  }
+  .badge-green {
+    @apply badge bg-green-100 text-success;
+  }
+  .badge-amber {
+    @apply badge bg-amber-100 text-saffron-700;
+  }
+  .badge-gray {
+    @apply badge bg-lightgray text-muted;
+  }
+  .badge-navy {
+    @apply badge bg-navy-50 text-navy-700;
+  }
+  .badge-red {
+    @apply badge bg-red-100 text-error;
+  }
+  .table-th {
+    @apply px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-muted;
+  }
+  .table-td {
+    @apply px-4 py-3 text-sm text-ink;
+  }
+  .prose-cms h2 { @apply mt-8 mb-3 text-xl font-heading font-bold text-navy; }
+  .prose-cms h3 { @apply mt-6 mb-2 text-lg font-heading font-semibold text-navy; }
+  .prose-cms p { @apply my-3 text-base leading-relaxed text-ink/90; }
+  .prose-cms ul { @apply my-3 list-disc space-y-1 pl-6; }
+  .prose-cms ol { @apply my-3 list-decimal space-y-1 pl-6; }
+  .prose-cms a { @apply text-problue underline; }
+  .prose-cms blockquote { @apply my-4 border-l-4 border-saffron pl-4 italic text-navy-700; }
+}

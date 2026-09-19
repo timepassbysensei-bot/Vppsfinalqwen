@@ -1,0 +1,52 @@
+# Bokaro Defence Academy — Supabase local development configuration
+# Run `supabase start` for a local stack, then `supabase db reset` to apply all
+# migrations plus the clearly-labelled sample seed data.
+
+project_id = "bokaro-defence-academy"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public", "storage", "graphql_public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[db]
+port = 54322
+shadow_port = 54320
+major_version = 15
+
+[db.seed]
+enabled = true
+sql_paths = ["./seed.sql"]
+
+[studio]
+enabled = true
+port = 54323
+
+[auth]
+enabled = true
+site_url = "http://localhost:5173"
+additional_redirect_urls = ["http://localhost:5173", "https://localhost:5173"]
+jwt_expiry = 3600
+enable_signup = true
+
+[auth.email]
+# Email confirmation is required in production. Enable it once a real SMTP
+# provider is configured (Supabase → Auth → SMTP).
+enable_signup = true
+enable_confirmations = false
+
+[storage]
+enabled = true
+file_size_limit = "50MiB"
+
+# The public assistant is used by signed-out visitors, so it must not require a JWT
+# (rate limiting and a Gemini key that lives only on the server protect it).
+[functions.academy-chatbot]
+verify_jwt = false
+
+# Account invitations must be authenticated — the function re-checks the caller's
+# admin role server-side before using the service-role key.
+[functions.invite-user]
+verify_jwt = true
